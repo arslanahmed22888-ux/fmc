@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="theme-color" content="#0f2a33">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="FMC Fault">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f766e'/%3E%3Ctext x='32' y='41' font-family='Arial' font-weight='700' font-size='20' fill='white' text-anchor='middle'%3EFMC%3C/text%3E%3C/svg%3E">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>FMC Fault Entry</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --accent: #0f766e;
+    --accent-soft: #ecf7f5;
+    --accent-ink: #0b5c55;
+    --ink: #1f2937;
+    --muted: #5b6670;
+    --line: #cfd6dc;
+    --line-soft: #e3e8ec;
+    --bg: #f1f4f6;
+    --head: #0f2a33;
+    --danger: #b42318;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); color: var(--ink);
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; font-size: 15px; }
+  .wrap { max-width: 520px; margin: 0 auto; min-height: 100vh; display: flex; flex-direction: column; }
+  header { background: var(--head); color: #fff; padding: 18px 18px 20px; display: flex; flex-direction: column; gap: 14px; }
+  .brand { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .brand-left { display: flex; align-items: center; gap: 10px; }
+  .logo { width: 36px; height: 36px; border-radius: 9px; background: var(--accent); display: flex;
+    align-items: center; justify-content: center; font-weight: 700; font-size: 13px; letter-spacing: .5px; }
+  .brand-title { font-weight: 600; font-size: 16px; }
+  .brand-sub { font-size: 12px; color: #b6c6cc; }
+  .who { background: rgba(23,57,68,.6); border: 1px solid #2c4a54; border-radius: 10px; padding: 10px 12px;
+    display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .who small { display: block; font-size: 12px; color: #b6c6cc; }
+  .who strong { font-size: 14px; }
+  .btn-ghost { min-height: 40px; padding: 0 14px; border-radius: 10px; border: 1px solid #2c4a54;
+    background: transparent; color: #fff; font: inherit; font-size: 14px; }
+  main { padding: 16px; display: flex; flex-direction: column; gap: 14px; flex: 1; }
+  .card { background: #fff; border: 1px solid var(--line-soft); border-radius: 14px; padding: 16px;
+    display: flex; flex-direction: column; gap: 14px; }
+  .card h2 { margin: 0; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: .6px; color: #4b5563; }
+  .field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+  label, legend { font-size: 14px; font-weight: 500; }
+  .req { color: var(--danger); }
+  .hint { font-size: 12px; color: var(--muted); margin: 0; }
+  input[type=text], input[type=password], input[type=date], input[type=time], select, textarea {
+    width: 100%; min-height: 46px; border: 1px solid var(--line); border-radius: 10px; padding: 0 12px;
+    font: inherit; font-size: 15px; color: var(--ink); background: #fff; }
+  select { padding: 0 8px; }
+  textarea { padding: 11px 12px; line-height: 1.4; }
+  textarea.grow { resize: none; overflow: hidden; }
+  textarea.rca { min-height: 104px; resize: vertical; }
+  input:focus, select:focus, textarea:focus, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .span2 { grid-column: span 2; }
+  fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+  legend { padding: 0; margin-bottom: 8px; }
+  .pill { min-height: 44px; border-radius: 10px; border: 1px solid var(--line); background: #fff; color: var(--ink);
+    font: inherit; font-size: 15px; font-weight: 500; padding: 0 6px; }
+  .pill[aria-pressed="true"] { border: 2px solid var(--accent); background: var(--accent-soft); color: var(--accent-ink); font-weight: 600; }
+  .loc-btn { min-height: 52px; border-radius: 12px; border: 2px dashed var(--accent); background: var(--accent-soft);
+    color: var(--accent-ink); font: inherit; font-size: 15px; font-weight: 600; display: flex; align-items: center;
+    justify-content: center; gap: 8px; }
+  .loc-btn[disabled] { opacity: .6; }
+  .primary { min-height: 54px; border-radius: 12px; border: 0; background: var(--accent); color: #fff;
+    font: inherit; font-size: 16px; font-weight: 600; }
+  .primary[disabled] { opacity: .6; }
+  .err { color: var(--danger); font-size: 13px; margin: 0; }
+  .invalid { border-color: var(--danger) !important; }
+  fieldset.invalid .pill { border-color: var(--danger); }
+  .banner { border-radius: 12px; padding: 12px 14px; font-size: 14px; font-weight: 500; }
+  .banner.ok { background: #e7f6ec; color: #14532d; border: 1px solid #b7e1c4; }
+  .banner.bad { background: #fdecea; color: #7a1a12; border: 1px solid #f3c2bc; }
+  .center { text-align: center; }
+  .hidden { display: none !important; }
+  .loading { padding: 60px 16px; text-align: center; color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="brand">
+      <div class="brand-left">
+        <div class="logo">FMC</div>
+        <div>
+          <div class="brand-title">Fault Entry</div>
+          <div class="brand-sub">Field team form</div>
+        </div>
+      </div>
+    </div>
+    <div class="who hidden" id="whoBox">
+      <div><small>Logged in as</small><strong id="whoName"></strong></div>
+      <button type="button" class="btn-ghost" id="logoutBtn">Logout</button>
+    </div>
+  </header>
+
+  <div class="loading" id="loadingView">Loading…</div>
+
+  <!-- LOGIN -->
+  <main id="loginView" class="hidden">
+    <form class="card" id="loginForm" novalidate>
+      <h2>Login</h2>
+      <div class="field">
+        <label for="lUser">Username</label>
+        <input id="lUser" type="text" autocomplete="username" autocapitalize="none" spellcheck="false">
+      </div>
+      <div class="field">
+        <label for="lPass">Password</label>
+        <input id="lPass" type="password" autocomplete="current-password">
+      </div>
+      <p class="err hidden" id="loginErr"></p>
+      <button class="primary" type="submit" id="loginBtn">Login</button>
+    </form>
+    <p class="hint center">Username and password are given by the administrator.</p>
+  </main>
+
+  <!-- FORM -->
+  <main id="formView" class="hidden">
+    <div class="banner ok hidden" id="okBanner">Fault saved. You can add the next one.</div>
+    <div class="banner bad hidden" id="badBanner"></div>
+
+    <form id="faultForm" novalidate style="display:flex;flex-direction:column;gap:14px">
+
+      <section class="card">
+        <h2>Fault details</h2>
+        <div class="field">
+          <label for="fName">Fault name / TT description <span class="req">*</span></label>
+          <textarea id="fName" class="grow" rows="1" placeholder="e.g. link or cable name"></textarea>
+        </div>
+        <div class="field">
+          <label for="fDate">Date <span class="req">*</span></label>
+          <input id="fDate" type="date">
+          <p class="hint">Today is filled in. Change it only for a late entry.</p>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Network</h2>
+        <fieldset>
+          <legend>FMC</legend>
+          <div class="grid3" id="fmcPills"></div>
+        </fieldset>
+        <fieldset>
+          <legend>Aerial / Underground <span class="req">*</span></legend>
+          <div class="grid3" id="aerialPills"></div>
+        </fieldset>
+        <div class="grid2">
+          <div class="field">
+            <label for="fType">Type</label>
+            <select id="fType"></select>
+          </div>
+          <div class="field">
+            <label for="fCable">Cable type</label>
+            <select id="fCable"></select>
+          </div>
+        </div>
+        <p class="hint">Nothing is pre-selected. Tap a selected button again to clear it.</p>
+      </section>
+
+      <section class="card">
+        <h2>Timeline</h2>
+        <div class="grid2">
+          <div class="field">
+            <label for="fDep">Departure</label>
+            <input id="fDep" type="time">
+          </div>
+          <div class="field">
+            <label for="fArr">Arrival at site</label>
+            <input id="fArr" type="time">
+          </div>
+          <div class="field span2">
+            <label for="fRes">Restore time</label>
+            <input id="fRes" type="time">
+          </div>
+        </div>
+        <p class="hint">Restore time = when the fault was completed.</p>
+      </section>
+
+      <section class="card">
+        <h2>Site location <span class="req">*</span></h2>
+        <button type="button" class="loc-btn" id="locBtn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle>
+          </svg>
+          <span id="locBtnText">Get my location</span>
+        </button>
+        <div class="field">
+          <label for="fLoc">Latitude, Longitude</label>
+          <input id="fLoc" type="text" inputmode="decimal" placeholder="24.8607, 67.0011">
+        </div>
+        <p class="hint" id="locHint">Press the button at the site. If it does not work, <a href="https://www.google.com/maps" target="_blank" rel="noopener">open Google Maps</a>, copy your coordinates and paste them here.</p>
+      </section>
+
+      <section class="card">
+        <h2>Cause &amp; closing</h2>
+        <div class="field">
+          <label for="fReason">Reason category <span class="req">*</span></label>
+          <select id="fReason"></select>
+        </div>
+        <div class="field">
+          <label for="fAgency">Agency involved</label>
+          <select id="fAgency"></select>
+        </div>
+        <div class="field">
+          <label for="fRca">RCA / remarks <span class="req">*</span></label>
+          <textarea id="fRca" class="rca" rows="4" placeholder="What happened and what was done"></textarea>
+        </div>
+      </section>
+
+      <p class="err hidden" id="formErr"></p>
+      <p class="hint"><span class="req">*</span> Required. Form will not submit without location.</p>
+      <button class="primary" type="submit" id="submitBtn">Submit fault</button>
+      <p class="hint center" style="margin-bottom:12px">Data goes straight to the office sheet.</p>
+    </form>
+  </main>
+</div>
+
+<script>
+/* =====================================================================
+   SETUP: paste your Apps Script "Web app URL" (ends with /exec) below.
+   ===================================================================== */
+var API_URL = 'https://script.google.com/macros/s/AKfycbxxVBsvFIiDasr5qsnCi8q_P7S0fwZ1EwA-LZT7hWfqAAKsM2-HIPSnGFD_QAG3n-m0/exec';
+
+(function () {
+  var TOKEN_KEY = 'fmc_token';
+  var state = { token: null, lists: null, fmc: '', aerial: '', entryId: null, busy: false };
+
+  function $(id) { return document.getElementById(id); }
+  function show(id) { ['loadingView', 'loginView', 'formView'].forEach(function (v) { $(v).classList.toggle('hidden', v !== id); }); }
+  function store(k, v) { try { if (v == null) localStorage.removeItem(k); else localStorage.setItem(k, v); } catch (e) {} }
+  function load(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function today() {
+    var d = new Date();
+    return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2);
+  }
+  function newId() { return 'E' + Date.now().toString(36) + Math.random().toString(36).slice(2, 8); }
+
+  // Talks to the Apps Script web app (API_URL at the top of this script).
+  function call(fn, args, ok, fail) {
+    if (!API_URL || API_URL.indexOf('script.google.com') < 0) { fail('App is not set up yet (API_URL missing).'); return; }
+    var ctrl = ('AbortController' in window) ? new AbortController() : null;
+    var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, 30000);
+    fetch(API_URL, {
+      method: 'POST',
+      body: JSON.stringify({ action: fn, args: args }),   // text/plain: no CORS pre-check needed
+      redirect: 'follow',
+      signal: ctrl ? ctrl.signal : undefined
+    }).then(function (r) {
+      if (!r.ok) throw new Error('Server error ' + r.status + '.');
+      return r.json();
+    }).then(function (res) {
+      clearTimeout(timer); ok(res);
+    }).catch(function (e) {
+      clearTimeout(timer);
+      fail((e && e.name === 'AbortError') ? 'Server is taking too long.' : 'No connection. Please try again.');
+    });
+  }
+
+  /* ---------- building the form from the Lists sheet ---------- */
+  function fillSelect(el, items, placeholder) {
+    el.innerHTML = '';
+    var o = document.createElement('option'); o.value = ''; o.textContent = placeholder; el.appendChild(o);
+    (items || []).forEach(function (v) {
+      var x = document.createElement('option'); x.value = v; x.textContent = v; el.appendChild(x);
+    });
+  }
+  function buildPills(boxId, key, items) {
+    var box = $(boxId); box.innerHTML = '';
+    (items || []).forEach(function (v) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'pill'; b.textContent = v;
+      b.setAttribute('aria-pressed', 'false');
+      b.addEventListener('click', function () {
+        state[key] = (state[key] === v) ? '' : v;   // tap again = unselect
+        renderPills(boxId, key);
+        box.parentNode.classList.remove('invalid');
+      });
+      box.appendChild(b);
+    });
+  }
+  function renderPills(boxId, key) {
+    Array.prototype.forEach.call($(boxId).children, function (b) {
+      b.setAttribute('aria-pressed', b.textContent === state[key] ? 'true' : 'false');
+    });
+  }
+  function buildForm(lists) {
+    state.lists = lists;
+    buildPills('fmcPills', 'fmc', lists.fmc);
+    buildPills('aerialPills', 'aerial', lists.aerial);
+    fillSelect($('fType'), lists.type, 'Select…');
+    fillSelect($('fCable'), lists.cable, 'Select…');
+    fillSelect($('fReason'), lists.reason, 'Select reason…');
+    fillSelect($('fAgency'), lists.agency, 'Select agency…');
+    resetForm();
+  }
+  function resetForm() {
+    $('faultForm').reset();
+    state.fmc = ''; state.aerial = '';
+    renderPills('fmcPills', 'fmc'); renderPills('aerialPills', 'aerial');
+    $('fDate').value = today();
+    autoGrow($('fName'));
+    state.entryId = newId();
+    clearErrors();
+  }
+
+  /* ---------- auto-growing fault name box ---------- */
+  function autoGrow(el) { el.style.height = 'auto'; el.style.height = Math.max(46, el.scrollHeight + 2) + 'px'; }
+  $('fName').addEventListener('input', function () { autoGrow(this); });
+  ['input', 'change'].forEach(function (t) {
+    $('faultForm').addEventListener(t, function (ev) { if (ev.target.classList) ev.target.classList.remove('invalid'); });
+  });
+
+  /* ---------- session ---------- */
+  function signedIn(res) {
+    state.token = res.token || state.token;
+    if (res.token) store(TOKEN_KEY, res.token);
+    $('whoName').textContent = res.name;
+    $('whoBox').classList.remove('hidden');
+    buildForm(res.lists);
+    show('formView');
+  }
+  function toLogin(msg) {
+    state.token = null; store(TOKEN_KEY, null);
+    $('whoBox').classList.add('hidden');
+    $('lPass').value = '';
+    var e = $('loginErr'); e.textContent = msg || ''; e.classList.toggle('hidden', !msg);
+    show('loginView');
+  }
+
+  $('loginForm').addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var u = $('lUser').value.trim(), p = $('lPass').value;
+    if (!u || !p) { toLogin('Enter username and password.'); $('lUser').value = u; return; }
+    var btn = $('loginBtn'); btn.disabled = true; btn.textContent = 'Logging in…';
+    call('login', [u, p], function (res) {
+      btn.disabled = false; btn.textContent = 'Login';
+      if (res && res.ok) signedIn(res);
+      else { toLogin(res && res.msg); $('lUser').value = u; }
+    }, function (msg) {
+      btn.disabled = false; btn.textContent = 'Login';
+      toLogin(msg); $('lUser').value = u;
+    });
+  });
+
+  $('logoutBtn').addEventListener('click', function () { toLogin(''); });
+
+  /* ---------- location ---------- */
+  var LOC_HINT = $('locHint').innerHTML;
+  $('locBtn').addEventListener('click', function () {
+    var btn = this, hint = $('locHint');
+    if (!navigator.geolocation) { hint.innerHTML = 'Location is not available on this phone. ' + LOC_HINT; return; }
+    btn.disabled = true; $('locBtnText').textContent = 'Getting location…';
+    navigator.geolocation.getCurrentPosition(function (pos) {
+      $('fLoc').value = pos.coords.latitude.toFixed(6) + ', ' + pos.coords.longitude.toFixed(6);
+      $('fLoc').classList.remove('invalid');
+      hint.textContent = 'Location added (accuracy about ' + Math.round(pos.coords.accuracy) + ' m).';
+      btn.disabled = false; $('locBtnText').textContent = 'Get my location again';
+    }, function (err) {
+      var why = (err && err.code === 1) ? 'Location permission was denied. Allow location for this site in Chrome settings.'
+              : 'Could not get location. Turn on GPS and try again.';
+      hint.innerHTML = why + ' Or <a href="https://www.google.com/maps" target="_blank" rel="noopener">open Google Maps</a> and paste the coordinates.';
+      btn.disabled = false; $('locBtnText').textContent = 'Get my location';
+    }, { enableHighAccuracy: true, timeout: 20000, maximumAge: 0 });
+  });
+
+  /* ---------- validation & submit ---------- */
+  function clearErrors() {
+    document.querySelectorAll('.invalid').forEach(function (el) { el.classList.remove('invalid'); });
+    $('formErr').classList.add('hidden');
+  }
+  function validLoc(s) {
+    var m = String(s).match(/^\s*\(?\s*(-?\d{1,3}(?:\.\d+)?)\s*[, ]\s*(-?\d{1,3}(?:\.\d+)?)\s*\)?\s*$/);
+    return !!m && Math.abs(+m[1]) <= 90 && Math.abs(+m[2]) <= 180;
+  }
+
+  $('faultForm').addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    if (state.busy) return;
+    clearErrors();
+    $('okBanner').classList.add('hidden'); $('badBanner').classList.add('hidden');
+
+    var d = {
+      entryId: state.entryId,
+      faultName: $('fName').value.trim(),
+      date: $('fDate').value,
+      fmc: state.fmc,
+      aerial: state.aerial,
+      type: $('fType').value,
+      cable: $('fCable').value,
+      departure: $('fDep').value,
+      arrival: $('fArr').value,
+      restore: $('fRes').value,
+      location: $('fLoc').value.trim(),
+      reason: $('fReason').value,
+      agency: $('fAgency').value,
+      rca: $('fRca').value.trim()
+    };
+
+    var bad = [];
+    function need(ok, el, msg) { if (!ok) { el.classList.add('invalid'); bad.push({ el: el, msg: msg }); } }
+    need(d.faultName, $('fName'), 'Write the fault name.');
+    need(d.date, $('fDate'), 'Select the date.');
+    need(d.aerial, $('aerialPills').parentNode, 'Select Aerial / Underground.');
+    need(validLoc(d.location), $('fLoc'), 'Add the location (press the button or paste Latitude, Longitude).');
+    need(d.reason, $('fReason'), 'Select Reason category.');
+    need(d.rca, $('fRca'), 'Write RCA / remarks.');
+
+    if (bad.length) {
+      var e = $('formErr'); e.textContent = bad[0].msg; e.classList.remove('hidden');
+      bad[0].el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    state.busy = true;
+    var btn = $('submitBtn'); btn.disabled = true; btn.textContent = 'Saving…';
+    call('submitFault', [state.token, d], function (res) {
+      state.busy = false; btn.disabled = false; btn.textContent = 'Submit fault';
+      if (res && res.ok) {
+        resetForm();
+        $('okBanner').classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else if (res && res.relogin) {
+        toLogin(res.msg);
+      } else {
+        var e = $('formErr'); e.textContent = (res && res.msg) || 'Could not save. Try again.'; e.classList.remove('hidden');
+      }
+    }, function (msg) {
+      state.busy = false; btn.disabled = false; btn.textContent = 'Submit fault';
+      var b = $('badBanner');
+      b.textContent = 'Not saved: ' + msg + ' Your entry is still on the form. Press Submit again when you have signal.';
+      b.classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  /* ---------- start ---------- */
+  var saved = load(TOKEN_KEY);
+  if (saved) {
+    state.token = saved;
+    call('resume', [saved], function (res) {
+      if (res && res.ok) signedIn(res); else toLogin(res && res.msg);
+    }, function () { toLogin('No connection. Please try again.'); });
+  } else {
+    toLogin('');
+  }
+})();
+</script>
+</body>
+</html>
