@@ -98,6 +98,85 @@
   .center { text-align: center; }
   .hidden { display: none !important; }
   .loading { padding: 60px 16px; text-align: center; color: var(--muted); }
+
+  /* ---------- icons ---------- */
+  .sec-head { display: flex; align-items: center; gap: 10px; }
+  .card .sec-head h2 { color: #374151; font-weight: 700; }
+  .sec-ic { width: 32px; height: 32px; border-radius: 9px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .sec-ic.red { background: #fdecea; color: #b42318; }
+  .sec-ic.blue { background: #e8f0fe; color: #1d4ed8; }
+  .sec-ic.amber { background: #fff4e5; color: #b45309; }
+  .sec-ic.teal { background: #ecf7f5; color: #0f766e; }
+  .sec-ic.purple { background: #f3e8ff; color: #7e22ce; }
+  .ic { position: relative; }
+  .ic > svg { position: absolute; left: 12px; top: 13px; color: #6b7780; pointer-events: none; }
+  .ic > input, .ic > select, .ic > textarea { padding-left: 42px; }
+  .lbl-ic { display: flex; align-items: center; gap: 6px; }
+  .lbl-ic svg { color: #6b7780; flex-shrink: 0; }
+  .pill { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-height: 64px; font-size: 13px; }
+  .avatar { width: 36px; height: 36px; border-radius: 18px; background: #24525e; color: #cfe3e8; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .who-left { display: flex; align-items: center; gap: 10px; }
+  .btn-ghost { display: flex; align-items: center; gap: 6px; padding: 0 12px; }
+  .primary { display: flex; align-items: center; justify-content: center; gap: 10px; }
+
+  /* ---------- loading animation ---------- */
+  #splash { position: fixed; inset: 0; z-index: 50; background: #0f2a33; color: #fff; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 26px; padding: 24px; transition: opacity .3s ease; }
+  #splash.out { opacity: 0; }
+  #splash svg { max-width: 100%; height: auto; }
+  .sp-logo { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .sp-tile { width: 56px; height: 56px; border-radius: 14px; background: #0f766e; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 17px; letter-spacing: .6px; }
+  .sp-title { font-weight: 600; font-size: 20px; }
+  .sp-text { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .sp-msg { font-size: 15px; font-weight: 600; display: flex; align-items: baseline; gap: 2px; }
+  .sp-sub { font-size: 12px; color: #9fb7be; }
+  .dt1 { animation: dt 1.2s infinite; } .dt2 { animation: dt 1.2s .2s infinite; } .dt3 { animation: dt 1.2s .4s infinite; }
+  @keyframes dt { 0%, 80%, 100% { opacity: .25 } 40% { opacity: 1 } }
+  .fade3 { animation: fade3 3s linear infinite; }
+  @keyframes fade3 { 0% { opacity: 0 } 6%, 92% { opacity: 1 } 100% { opacity: 0 } }
+  /* 1 fiber splice */
+  .a1-left { animation: a1L 3s cubic-bezier(.3,.7,.2,1) infinite; }
+  .a1-right { animation: a1R 3s cubic-bezier(.3,.7,.2,1) infinite; }
+  .a1-flash { transform-box: fill-box; transform-origin: center; animation: a1Flash 3s ease-out infinite; }
+  .a1-sleeve { transform-box: fill-box; transform-origin: center; animation: a1Sleeve 3s ease-in-out infinite; }
+  .a1-pulse { animation: a1Pulse 3s linear infinite; }
+  @keyframes a1L { 0% { transform: translateX(-70px) } 38%, 100% { transform: translateX(0) } }
+  @keyframes a1R { 0% { transform: translateX(70px) } 38%, 100% { transform: translateX(0) } }
+  @keyframes a1Flash { 0%, 36% { opacity: 0; transform: scale(.2) } 42% { opacity: 1; transform: scale(1.4) } 52%, 100% { opacity: 0; transform: scale(2.2) } }
+  @keyframes a1Sleeve { 0%, 46% { opacity: 0; transform: scaleX(0) } 56%, 92% { opacity: 1; transform: scaleX(1) } 100% { opacity: 0; transform: scaleX(1) } }
+  @keyframes a1Pulse { 0%, 56% { opacity: 0; stroke-dashoffset: 40 } 60% { opacity: 1 } 88% { opacity: 1; stroke-dashoffset: -300 } 92%, 100% { opacity: 0; stroke-dashoffset: -300 } }
+  /* 2 otdr trace */
+  .a2-box { width: 330px; max-width: 100%; background: #0b1f26; border: 1px solid #23434c; border-radius: 16px; padding: 12px 12px 10px; display: flex; flex-direction: column; gap: 6px; }
+  .a2-row { display: flex; justify-content: space-between; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 11px; color: #7fa3ac; }
+  .a2-trace { stroke-dasharray: 1; stroke-dashoffset: 1; animation: a2Draw 3s ease-in-out infinite; }
+  .a2-mark { animation: a2Mark 3s ease-out infinite; }
+  @keyframes a2Draw { 0% { stroke-dashoffset: 1 } 62%, 100% { stroke-dashoffset: 0 } }
+  @keyframes a2Mark { 0%, 60% { opacity: 0; transform: translateY(6px) } 70%, 92% { opacity: 1; transform: none } 100% { opacity: 0 } }
+  /* 3 fiber colour strands */
+  .a3-wrap { position: relative; width: 340px; max-width: 100%; aspect-ratio: 340 / 220; }
+  .a3-wrap svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .a3-core { position: absolute; left: 39.7%; top: 34%; width: 20.6%; aspect-ratio: 1; border-radius: 18px; background: #0f766e; border: 2px solid #5eead4;
+    display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 19px; letter-spacing: .6px; animation: a3Glow 1.8s ease-in-out infinite; }
+  .a3-pulse { stroke-dasharray: 10 110; stroke-dashoffset: 120; animation: a3Run 1.8s linear infinite; }
+  .d1 { animation-delay: 0s } .d2 { animation-delay: .15s } .d3 { animation-delay: .3s } .d4 { animation-delay: .45s } .d5 { animation-delay: .6s } .d6 { animation-delay: .75s }
+  @keyframes a3Run { 0% { stroke-dashoffset: 120; opacity: 0 } 10% { opacity: 1 } 85% { opacity: 1 } 100% { stroke-dashoffset: 0; opacity: 0 } }
+  @keyframes a3Glow { 0%, 100% { box-shadow: 0 0 0 0 rgba(45,212,191,0) } 50% { box-shadow: 0 0 28px 6px rgba(45,212,191,.55) } }
+  /* 4 network map pin */
+  .a4-link { stroke-dasharray: 1; stroke-dashoffset: 1; animation: a4Link 3s ease-out infinite; }
+  .l2 { animation-delay: .12s } .l3 { animation-delay: .24s } .l4 { animation-delay: .36s } .l5 { animation-delay: .48s }
+  .a4-node { transform-box: fill-box; transform-origin: center; animation: a4Node 3s ease-out infinite; }
+  .a4-pin { animation: a4Pin 3s cubic-bezier(.3,1.4,.5,1) infinite; }
+  .a4-ring { transform-box: fill-box; transform-origin: center; animation: a4Ring 3s ease-out infinite; }
+  .a4-ring2 { animation-delay: .35s; }
+  @keyframes a4Link { 0%, 8% { stroke-dashoffset: 1 } 40%, 100% { stroke-dashoffset: 0 } }
+  @keyframes a4Node { 0% { opacity: 0; transform: scale(0) } 14%, 100% { opacity: 1; transform: scale(1) } }
+  @keyframes a4Pin { 0%, 44% { opacity: 0; transform: translateY(-60px) } 56%, 100% { opacity: 1; transform: translateY(0) } }
+  @keyframes a4Ring { 0%, 56% { opacity: 0; transform: scale(.3) } 62% { opacity: .9 } 90%, 100% { opacity: 0; transform: scale(2.6) } }
+  @media (prefers-reduced-motion: reduce) {
+    #splash, #splash * { animation: none !important; transition: none !important; }
+    .a1-pulse, .a3-pulse { opacity: 0; }
+    .a2-trace, .a4-link { stroke-dashoffset: 0; }
+  }
 </style>
 </head>
 <body>
@@ -115,24 +194,157 @@
       <span class="net on" id="netBadge" role="status">Online</span>
     </div>
     <div class="who hidden" id="whoBox">
-      <div><small>Logged in as</small><strong id="whoName"></strong></div>
-      <button type="button" class="btn-ghost" id="logoutBtn">Logout</button>
+      <div class="who-left">
+        <span class="avatar"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></span>
+        <div><small>Logged in as</small><strong id="whoName"></strong></div>
+      </div>
+      <button type="button" class="btn-ghost" id="logoutBtn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><path d="M16 17l5-5-5-5"></path><path d="M21 12H9"></path></svg>
+        Logout
+      </button>
     </div>
   </header>
 
-  <div class="loading" id="loadingView">Loading…</div>
+  <div class="loading hidden" id="loadingView">Loading…</div>
+
+  <!-- LOADING ANIMATION: one of the four templates below, picked at random -->
+  <div id="splash" role="status" aria-label="Loading FMC Fault Entry"></div>
+
+  <template id="anim1">
+    <div class="sp-logo"><div class="sp-tile">FMC</div><span class="sp-title">Fault Entry</span></div>
+    <svg width="320" height="120" viewBox="0 0 320 120" style="overflow:visible" aria-hidden="true">
+      <g class="fade3">
+        <g class="a1-left">
+          <rect x="0" y="52" width="104" height="16" rx="8" fill="#facc15"></rect>
+          <rect x="96" y="56" width="8" height="8" fill="#eab308"></rect>
+          <rect x="104" y="56.5" width="34" height="7" rx="3.5" fill="#e2e8f0"></rect>
+          <line x1="138" y1="60" x2="160" y2="60" stroke="#a5f3fc" stroke-width="2.4" stroke-linecap="round"></line>
+        </g>
+        <g class="a1-right">
+          <rect x="216" y="52" width="104" height="16" rx="8" fill="#facc15"></rect>
+          <rect x="216" y="56" width="8" height="8" fill="#eab308"></rect>
+          <rect x="182" y="56.5" width="34" height="7" rx="3.5" fill="#e2e8f0"></rect>
+          <line x1="160" y1="60" x2="182" y2="60" stroke="#a5f3fc" stroke-width="2.4" stroke-linecap="round"></line>
+        </g>
+        <rect class="a1-sleeve" x="132" y="50" width="56" height="20" rx="10" fill="rgba(203,213,225,.35)" stroke="#cbd5e1" stroke-width="1.5"></rect>
+        <line class="a1-pulse" x1="10" y1="60" x2="310" y2="60" stroke="#ecfeff" stroke-width="4" stroke-linecap="round" stroke-dasharray="40 340"></line>
+        <circle class="a1-flash" cx="160" cy="60" r="10" fill="#67e8f9"></circle>
+      </g>
+    </svg>
+    <div class="sp-text"><span class="sp-msg">Connecting<span class="dt1">.</span><span class="dt2">.</span><span class="dt3">.</span></span><span class="sp-sub">Fiber cut team console</span></div>
+  </template>
+
+  <template id="anim2">
+    <div class="sp-logo"><div class="sp-tile">FMC</div><span class="sp-title">Fault Entry</span></div>
+    <div class="a2-box">
+      <div class="a2-row"><span>OTDR · 1550 nm</span><span>dB / km</span></div>
+      <svg width="306" height="160" viewBox="0 0 306 160" aria-hidden="true">
+        <g stroke="#17343c" stroke-width="1">
+          <line x1="0" y1="40" x2="306" y2="40"></line><line x1="0" y1="80" x2="306" y2="80"></line><line x1="0" y1="120" x2="306" y2="120"></line>
+          <line x1="60" y1="0" x2="60" y2="150"></line><line x1="120" y1="0" x2="120" y2="150"></line><line x1="180" y1="0" x2="180" y2="150"></line><line x1="240" y1="0" x2="240" y2="150"></line>
+        </g>
+        <g class="fade3">
+          <path class="a2-trace" pathLength="1" d="M6 24 L58 36 L60 44 L118 56 L120 62 L196 76 L200 34 L204 118 L212 128 L222 122 L232 132 L242 124 L252 131 L262 125 L272 132 L284 126 L298 130" fill="none" stroke="#2dd4bf" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"></path>
+          <g class="a2-mark">
+            <line x1="200" y1="10" x2="200" y2="150" stroke="#f87171" stroke-width="1.5" stroke-dasharray="4 4"></line>
+            <rect x="134" y="2" width="130" height="22" rx="6" fill="#3b1416" stroke="#f87171" stroke-width="1"></rect>
+            <text x="199" y="17" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="11" font-weight="700" fill="#fecaca">FAULT · 2.35 km</text>
+          </g>
+        </g>
+      </svg>
+      <div class="a2-row" style="font-size:10px;color:#5f838c"><span>0</span><span>1</span><span>2</span><span>3</span><span>4 km</span></div>
+    </div>
+    <div class="sp-text"><span class="sp-msg">Analysing trace<span class="dt1">.</span><span class="dt2">.</span><span class="dt3">.</span></span><span class="sp-sub">Fiber cut team console</span></div>
+  </template>
+
+  <template id="anim3">
+    <div class="a3-wrap">
+      <svg viewBox="0 0 340 220" aria-hidden="true">
+        <g fill="none" stroke-width="3" stroke-linecap="round" opacity=".55">
+          <path d="M0 20 C90 20 110 110 170 110" stroke="#3b82f6"></path>
+          <path d="M0 56 C90 56 110 110 170 110" stroke="#f97316"></path>
+          <path d="M0 92 C90 92 110 110 170 110" stroke="#22c55e"></path>
+          <path d="M0 128 C90 128 110 110 170 110" stroke="#92400e"></path>
+          <path d="M0 164 C90 164 110 110 170 110" stroke="#94a3b8"></path>
+          <path d="M0 200 C90 200 110 110 170 110" stroke="#f1f5f9"></path>
+          <path d="M340 20 C250 20 230 110 170 110" stroke="#ef4444"></path>
+          <path d="M340 56 C250 56 230 110 170 110" stroke="#1f2937"></path>
+          <path d="M340 92 C250 92 230 110 170 110" stroke="#facc15"></path>
+          <path d="M340 128 C250 128 230 110 170 110" stroke="#a855f7"></path>
+          <path d="M340 164 C250 164 230 110 170 110" stroke="#f472b6"></path>
+          <path d="M340 200 C250 200 230 110 170 110" stroke="#22d3ee"></path>
+        </g>
+        <g fill="none" stroke="#ecfeff" stroke-width="3.5" stroke-linecap="round">
+          <path class="a3-pulse d1" pathLength="120" d="M0 20 C90 20 110 110 170 110"></path>
+          <path class="a3-pulse d3" pathLength="120" d="M0 56 C90 56 110 110 170 110"></path>
+          <path class="a3-pulse d5" pathLength="120" d="M0 92 C90 92 110 110 170 110"></path>
+          <path class="a3-pulse d2" pathLength="120" d="M0 128 C90 128 110 110 170 110"></path>
+          <path class="a3-pulse d4" pathLength="120" d="M0 164 C90 164 110 110 170 110"></path>
+          <path class="a3-pulse d6" pathLength="120" d="M0 200 C90 200 110 110 170 110"></path>
+          <path class="a3-pulse d2" pathLength="120" d="M340 20 C250 20 230 110 170 110"></path>
+          <path class="a3-pulse d4" pathLength="120" d="M340 56 C250 56 230 110 170 110"></path>
+          <path class="a3-pulse d6" pathLength="120" d="M340 92 C250 92 230 110 170 110"></path>
+          <path class="a3-pulse d1" pathLength="120" d="M340 128 C250 128 230 110 170 110"></path>
+          <path class="a3-pulse d3" pathLength="120" d="M340 164 C250 164 230 110 170 110"></path>
+          <path class="a3-pulse d5" pathLength="120" d="M340 200 C250 200 230 110 170 110"></path>
+        </g>
+      </svg>
+      <div class="a3-core">FMC</div>
+    </div>
+    <div class="sp-text"><span class="sp-title">Fault Entry</span><span class="sp-msg" style="color:#cfe3e8">Connecting<span class="dt1">.</span><span class="dt2">.</span><span class="dt3">.</span></span><span class="sp-sub">Fiber cut team console</span></div>
+  </template>
+
+  <template id="anim4">
+    <div class="sp-logo"><div class="sp-tile">FMC</div><span class="sp-title">Fault Entry</span></div>
+    <svg width="320" height="240" viewBox="0 0 320 240" style="background:#0b1f26;border:1px solid #23434c;border-radius:18px" aria-hidden="true">
+      <g stroke="#163039" stroke-width="6" stroke-linecap="round" fill="none">
+        <path d="M-10 70 C80 60 140 100 330 80"></path><path d="M-10 170 C90 190 200 150 330 180"></path>
+        <path d="M90 -10 C100 80 70 160 110 250"></path><path d="M230 -10 C220 90 250 160 220 250"></path>
+      </g>
+      <g class="fade3">
+        <g fill="none" stroke="#2dd4bf" stroke-width="2.2" stroke-linecap="round">
+          <path class="a4-link" pathLength="1" d="M60 50 L160 110"></path>
+          <path class="a4-link l2" pathLength="1" d="M160 110 L270 60"></path>
+          <path class="a4-link l3" pathLength="1" d="M160 110 L80 190"></path>
+          <path class="a4-link l4" pathLength="1" d="M160 110 L250 190"></path>
+          <path class="a4-link l5" pathLength="1" d="M60 50 L80 190"></path>
+        </g>
+        <g fill="#0f2a33" stroke="#5eead4" stroke-width="2.5">
+          <circle class="a4-node" cx="60" cy="50" r="8"></circle><circle class="a4-node" cx="160" cy="110" r="10"></circle>
+          <circle class="a4-node" cx="270" cy="60" r="8"></circle><circle class="a4-node" cx="80" cy="190" r="8"></circle>
+          <circle class="a4-node" cx="250" cy="190" r="8"></circle>
+        </g>
+        <circle class="a4-ring" cx="208" cy="150" r="14" fill="none" stroke="#f87171" stroke-width="2"></circle>
+        <circle class="a4-ring a4-ring2" cx="208" cy="150" r="14" fill="none" stroke="#f87171" stroke-width="2"></circle>
+        <g class="a4-pin">
+          <path d="M208 152 C208 152 194 136 194 126 A14 14 0 0 1 222 126 C222 136 208 152 208 152 Z" fill="#ef4444" stroke="#fecaca" stroke-width="1.5"></path>
+          <circle cx="208" cy="126" r="5" fill="#fff5f5"></circle>
+        </g>
+      </g>
+    </svg>
+    <div class="sp-text"><span class="sp-msg">Locating faults<span class="dt1">.</span><span class="dt2">.</span><span class="dt3">.</span></span><span class="sp-sub">Fiber cut team console</span></div>
+  </template>
 
   <!-- LOGIN -->
   <main id="loginView" class="hidden">
     <form class="card" id="loginForm" novalidate>
-      <h2>Login</h2>
+      <div class="sec-head">
+        <span class="sec-ic teal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></span>
+        <h2>Login</h2>
+      </div>
       <div class="field">
         <label for="lUser">Username</label>
-        <input id="lUser" type="text" autocomplete="username" autocapitalize="none" spellcheck="false">
+        <div class="ic">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg>
+          <input id="lUser" type="text" autocomplete="username" autocapitalize="none" spellcheck="false">
+        </div>
       </div>
       <div class="field">
         <label for="lPass">Password</label>
-        <input id="lPass" type="password" autocomplete="current-password">
+        <div class="ic">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="15" r="4"></circle><path d="M10.8 12.2L20 3"></path><path d="M17 6l3 3"></path><path d="M15 8l2 2"></path></svg>
+          <input id="lPass" type="password" autocomplete="current-password">
+        </div>
       </div>
       <p class="err hidden" id="loginErr"></p>
       <button class="primary" type="submit" id="loginBtn">Login</button>
@@ -147,7 +359,7 @@
 
     <section class="queue hidden" id="queueBox" aria-label="Waiting entries">
       <div class="queue-title">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 2l20 20"></path><path d="M8.5 16.5a5 5 0 0 1 7 0"></path><path d="M5 12.9a10 10 0 0 1 5.2-2.8"></path><path d="M19 12.9a10 10 0 0 0-2.1-1.6"></path><circle cx="12" cy="20" r="1"></circle></svg>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 2l20 20"></path><path d="M17.5 17.5H7a5 5 0 0 1-1.4-9.8"></path><path d="M10 5.2A6 6 0 0 1 18 9h.5a3.5 3.5 0 0 1 2.4 6"></path></svg>
         <span id="queueTitle"></span>
       </div>
       <div id="queueList" style="display:flex;flex-direction:column;gap:8px"></div>
@@ -157,23 +369,38 @@
     <form id="faultForm" novalidate style="display:flex;flex-direction:column;gap:14px">
 
       <section class="card">
-        <h2>Fault details</h2>
+        <div class="sec-head">
+          <span class="sec-ic red"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg></span>
+          <h2>Fault details</h2>
+        </div>
         <div class="field" data-key="faultName">
           <label for="fName">Fault name / TT description <span class="req">*</span></label>
-          <textarea id="fName" class="grow" rows="1" placeholder="e.g. link or cable name"></textarea>
+          <div class="ic">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.6 13.4l-7.2 7.2a2 2 0 0 1-2.8 0L2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8z"></path><circle cx="7" cy="7" r="1.5"></circle></svg>
+            <textarea id="fName" class="grow" rows="1" placeholder="e.g. link or cable name"></textarea>
+          </div>
         </div>
         <div class="field" data-key="date">
           <label for="fDate">Date <span class="req">*</span></label>
-          <input id="fDate" type="date">
+          <div class="ic">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4"></path><path d="M8 2v4"></path><path d="M3 10h18"></path></svg>
+            <input id="fDate" type="date">
+          </div>
           <p class="hint">Today is filled in. Change it only for a late entry.</p>
         </div>
       </section>
 
       <section class="card">
-        <h2>Network</h2>
+        <div class="sec-head">
+          <span class="sec-ic blue"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5" r="2.5"></circle><circle cx="5" cy="19" r="2.5"></circle><circle cx="19" cy="19" r="2.5"></circle><path d="M12 7.5v4"></path><path d="M12 11.5L6.5 17"></path><path d="M12 11.5l5.5 5.5"></path></svg></span>
+          <h2>Network</h2>
+        </div>
         <div class="field" data-key="exchange">
           <label for="fExch">Exchange <span class="req">*</span></label>
-          <select id="fExch"></select>
+          <div class="ic">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"></rect><path d="M9 22v-4h6v4"></path><path d="M8 6h.01"></path><path d="M12 6h.01"></path><path d="M16 6h.01"></path><path d="M8 10h.01"></path><path d="M12 10h.01"></path><path d="M16 10h.01"></path><path d="M8 14h.01"></path><path d="M12 14h.01"></path><path d="M16 14h.01"></path></svg>
+            <select id="fExch"></select>
+          </div>
         </div>
         <fieldset data-key="aerial" id="aerialSet">
           <legend>Aerial / Underground <span class="req">*</span></legend>
@@ -182,28 +409,37 @@
         <div class="grid2">
           <div class="field" data-key="type">
             <label for="fType">Type <span class="req">*</span></label>
-            <select id="fType"></select>
+            <div class="ic">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+              <select id="fType"></select>
+            </div>
           </div>
           <div class="field" data-key="cable">
             <label for="fCable">Cable type <span class="req">*</span></label>
-            <select id="fCable"></select>
+            <div class="ic">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9a2 2 0 0 1-2-2V5h6v2a2 2 0 0 1-2 2z"></path><path d="M3 5V3"></path><path d="M7 5V3"></path><path d="M5 9v6a5 5 0 0 0 10 0V9a5 5 0 0 1 5-5h2"></path></svg>
+              <select id="fCable"></select>
+            </div>
           </div>
         </div>
       </section>
 
       <section class="card">
-        <h2>Timeline</h2>
+        <div class="sec-head">
+          <span class="sec-ic amber"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg></span>
+          <h2>Timeline</h2>
+        </div>
         <div class="grid2">
           <div class="field" data-key="departure">
-            <label for="fDep">Departure <span class="req">*</span></label>
+            <label for="fDep" class="lbl-ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="7" width="13" height="10" rx="1"></rect><path d="M14 10h4l3 3v4h-7"></path><circle cx="5.5" cy="18" r="2"></circle><circle cx="17.5" cy="18" r="2"></circle></svg>Departure <span class="req">*</span></label>
             <input id="fDep" type="time">
           </div>
           <div class="field" data-key="arrival">
-            <label for="fArr">Arrival at site <span class="req">*</span></label>
+            <label for="fArr" class="lbl-ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 22V4"></path><path d="M4 4h13l-2 4 2 4H4"></path></svg>Arrival at site <span class="req">*</span></label>
             <input id="fArr" type="time">
           </div>
           <div class="field span2" data-key="restore">
-            <label for="fRes">Restore time <span class="req">*</span></label>
+            <label for="fRes" class="lbl-ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0f766e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M8 12.5l2.5 2.5L16 9.5"></path></svg>Restore time <span class="req">*</span></label>
             <input id="fRes" type="time">
             <p class="hint">Current time is filled in. Change it if the fault was restored earlier.</p>
           </div>
@@ -211,44 +447,62 @@
       </section>
 
       <section class="card" data-key="location">
-        <h2>Site location <span class="req">*</span></h2>
+        <div class="sec-head">
+          <span class="sec-ic teal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg></span>
+          <h2>Site location <span class="req">*</span></h2>
+        </div>
         <button type="button" class="loc-btn" id="locBtn">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle>
-          </svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="7"></circle><circle cx="12" cy="12" r="2"></circle><path d="M12 2v3"></path><path d="M12 19v3"></path><path d="M2 12h3"></path><path d="M19 12h3"></path></svg>
           <span id="locBtnText">Get my location</span>
         </button>
         <div class="field">
           <label for="fLoc">Latitude, Longitude</label>
-          <input id="fLoc" type="text" inputmode="decimal" placeholder="31.5204, 74.3587">
+          <div class="ic">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4z"></path><path d="M8 2v16"></path><path d="M16 6v16"></path></svg>
+            <input id="fLoc" type="text" inputmode="decimal" placeholder="31.5204, 74.3587">
+          </div>
         </div>
         <p class="hint" id="locHint">Press the button at the site. GPS works without internet; in open sky it is faster.</p>
       </section>
 
       <section class="card">
-        <h2>Cause &amp; closing</h2>
+        <div class="sec-head">
+          <span class="sec-ic purple"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9l-3.8 3.8z"></path></svg></span>
+          <h2>Cause &amp; closing</h2>
+        </div>
         <div class="field" data-key="reason">
           <label for="fReason">Reason category <span class="req">*</span></label>
-          <select id="fReason"></select>
+          <div class="ic">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v4"></path><path d="M12 16h.01"></path></svg>
+            <select id="fReason"></select>
+          </div>
         </div>
         <div class="field" data-key="agency">
           <label for="fAgency">Agency involved <span class="req">*</span></label>
-          <select id="fAgency"></select>
+          <div class="ic">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18"></path><path d="M5 21V10"></path><path d="M19 21V10"></path><path d="M9 21V10"></path><path d="M15 21V10"></path><path d="M12 3l9 5H3z"></path></svg>
+            <select id="fAgency"></select>
+          </div>
         </div>
         <div class="field" data-key="odtr">
           <label for="fOdtr">ODTR Trace Analysis <span class="req">*</span></label>
-          <input id="fOdtr" type="text" placeholder="e.g. 2.35 km from AIT towards GLB">
+          <div class="ic">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+            <input id="fOdtr" type="text" placeholder="e.g. 2.35 km from AIT towards GLB">
+          </div>
         </div>
         <div class="field" data-key="desc">
           <label for="fDesc">Description <span class="req">*</span></label>
-          <textarea id="fDesc" class="rca" rows="4" placeholder="What happened and what was done"></textarea>
+          <div class="ic">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path><path d="M16 13H8"></path><path d="M16 17H8"></path></svg>
+            <textarea id="fDesc" class="rca" rows="4" placeholder="What happened and what was done"></textarea>
+          </div>
         </div>
       </section>
 
       <p class="err hidden" id="formErr" role="alert"></p>
       <p class="hint"><span class="req">*</span> Required.</p>
-      <button class="primary" type="submit" id="submitBtn">Submit fault</button>
+      <button class="primary" type="submit" id="submitBtn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L11 13"></path><path d="M22 2l-7 20-4-9-9-4 20-7z"></path></svg><span id="submitText">Submit fault</span></button>
       <p class="hint center" style="margin-bottom:12px">No internet? It is saved on the phone and sent later by itself.</p>
     </form>
   </main>
@@ -266,10 +520,35 @@ var API_URL = 'https://script.google.com/macros/s/AKfycbxxVBsvFIiDasr5qsnCi8q_P7
                     'restore', 'location', 'reason', 'agency', 'odtr', 'desc'];
   var DEFAULT_REQ = { faultName: 1, date: 1, aerial: 1, location: 1, reason: 1, desc: 1 };
   var state = { token: null, name: '', lists: null, settings: null, aerial: '', entryId: null,
-                flushing: false, restoreTouched: false, delArmed: null };
+                flushing: false, restoreTouched: false, delArmed: null, booted: false, dirty: false };
 
   function $(id) { return document.getElementById(id); }
-  function show(id) { ['loadingView', 'loginView', 'formView'].forEach(function (v) { $(v).classList.toggle('hidden', v !== id); }); }
+  function show(id) {
+    state.booted = true;
+    ['loadingView', 'loginView', 'formView'].forEach(function (v) { $(v).classList.toggle('hidden', v !== id); });
+    splashDone();
+  }
+
+  /* ---------- loading animation: random, never the same twice in a row, at least 3 s ---------- */
+  var SPLASH_MIN = 3000, splashT0 = Date.now(), splashGone = false;
+  (function startSplash() {
+    var last = parseInt(load('fmc_last_anim'), 10) || 0;
+    var pick = [1, 2, 3, 4].filter(function (n) { return n !== last; });
+    var n = pick[Math.floor(Math.random() * pick.length)];
+    store('fmc_last_anim', String(n));
+    var t = $('anim' + n);
+    if (t && t.content) $('splash').appendChild(t.content.cloneNode(true));
+  })();
+  function splashDone() {
+    if (splashGone) return;
+    splashGone = true;
+    var wait = Math.max(0, SPLASH_MIN - (Date.now() - splashT0));
+    setTimeout(function () {
+      var sp = $('splash'); if (!sp) return;
+      sp.classList.add('out');
+      setTimeout(function () { if (sp.parentNode) sp.parentNode.removeChild(sp); }, 320);
+    }, wait);
+  }
   function store(k, v) { try { if (v == null) localStorage.removeItem(k); else localStorage.setItem(k, v); } catch (e) {} }
   function load(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
   function loadJSON(k, d) { try { var v = JSON.parse(load(k)); return v == null ? d : v; } catch (e) { return d; } }
@@ -336,11 +615,20 @@ var API_URL = 'https://script.google.com/macros/s/AKfycbxxVBsvFIiDasr5qsnCi8q_P7
       el.appendChild(og);
     });
   }
+  function pillIcon(v) {
+    var k = String(v).toLowerCase().replace(/[^a-z]/g, '');
+    var p = k === 'aerial' ? '<path d="M12 22V3"></path><path d="M6 6h12"></path><path d="M8 10h8"></path><path d="M2 6c3 3 7 3 10 0"></path><path d="M12 6c3 3 7 3 10 0"></path>'
+      : (k === 'underground' ? '<path d="M2 8h20"></path><path d="M4 8l2-3h12l2 3"></path><rect x="4" y="13" width="16" height="6" rx="3"></rect><path d="M8 16h8"></path>'
+      : (k === 'both' ? '<path d="M7 14V3"></path><path d="M3 5h8"></path><path d="M2 14h20"></path><rect x="12" y="17" width="9" height="4" rx="2"></rect>' : ''));
+    return p ? '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + p + '</svg>' : '';
+  }
   function buildPills() {
     var box = $('aerialPills'); box.innerHTML = '';
     (state.lists.aerial || []).forEach(function (v) {
       var b = document.createElement('button');
-      b.type = 'button'; b.className = 'pill'; b.textContent = v;
+      b.type = 'button'; b.className = 'pill'; b.setAttribute('data-v', v);
+      b.innerHTML = pillIcon(v);
+      b.appendChild(document.createTextNode(v));
       b.setAttribute('aria-pressed', 'false');
       b.addEventListener('click', function () {
         state.aerial = (state.aerial === v) ? '' : v;   // tap again = unselect
@@ -352,7 +640,7 @@ var API_URL = 'https://script.google.com/macros/s/AKfycbxxVBsvFIiDasr5qsnCi8q_P7
   }
   function renderPills() {
     Array.prototype.forEach.call($('aerialPills').children, function (b) {
-      b.setAttribute('aria-pressed', b.textContent === state.aerial ? 'true' : 'false');
+      b.setAttribute('aria-pressed', b.getAttribute('data-v') === state.aerial ? 'true' : 'false');
     });
   }
   function settingFor(k) {
@@ -392,6 +680,7 @@ var API_URL = 'https://script.google.com/macros/s/AKfycbxxVBsvFIiDasr5qsnCi8q_P7
     $('fRes').value = nowTime(); state.restoreTouched = false;
     autoGrow($('fName'));
     state.entryId = newId();
+    state.dirty = false;
     $('locHint').textContent = 'Press the button at the site. GPS works without internet; in open sky it is faster.';
     clearErrors();
   }
@@ -408,7 +697,7 @@ var API_URL = 'https://script.google.com/macros/s/AKfycbxxVBsvFIiDasr5qsnCi8q_P7
   function autoGrow(el) { el.style.height = 'auto'; el.style.height = Math.max(46, el.scrollHeight + 2) + 'px'; }
   $('fName').addEventListener('input', function () { autoGrow(this); });
   ['input', 'change'].forEach(function (t) {
-    $('faultForm').addEventListener(t, function (ev) { if (ev.target.classList) ev.target.classList.remove('invalid'); });
+    $('faultForm').addEventListener(t, function (ev) { state.dirty = true; if (ev.target.classList) ev.target.classList.remove('invalid'); });
   });
 
   /* ---------- session ---------- */
@@ -424,7 +713,7 @@ var API_URL = 'https://script.google.com/macros/s/AKfycbxxVBsvFIiDasr5qsnCi8q_P7
     renderQueue();
     flushQueue();
   }
-  function offlineStart() {
+  function offlineStart(slow) {
     var cfg = loadJSON(CFG_KEY, null);
     if (!cfg || !cfg.lists) { toLogin('No internet. Please connect once to log in.'); return; }
     state.name = cfg.name; state.lists = cfg.lists; state.settings = cfg.settings || null;
@@ -432,8 +721,17 @@ var API_URL = 'https://script.google.com/macros/s/AKfycbxxVBsvFIiDasr5qsnCi8q_P7
     $('whoBox').classList.remove('hidden');
     buildForm();
     show('formView');
-    setNet(false);
+    if (!slow) setNet(false);
     renderQueue();
+  }
+  // fresh data arrived after the form was already opened from the saved copy
+  function lateRefresh(res) {
+    state.name = res.name; state.lists = res.lists; state.settings = res.settings || null;
+    saveCfg();
+    $('whoName').textContent = res.name;
+    setNet(true);
+    if (!state.dirty) buildForm();
+    flushQueue();
   }
   function toLogin(msg) {
     state.token = null; store(TOKEN_KEY, null);
@@ -647,11 +945,16 @@ var API_URL = 'https://script.google.com/macros/s/AKfycbxxVBsvFIiDasr5qsnCi8q_P7
     state.token = saved;
     if (navigator.onLine === false) { offlineStart(); }
     else {
+      // weak signal: after 8 s open the saved copy, keep loading fresh data in the background
+      var slowTimer = setTimeout(function () {
+        if (!state.booted && loadJSON(CFG_KEY, null)) offlineStart(true);
+      }, 8000);
       call('resume', [saved], function (res) {
-        if (res && res.ok) signedIn(res);
+        clearTimeout(slowTimer);
+        if (res && res.ok) { if (state.booted) lateRefresh(res); else signedIn(res); }
         else if (res && res.relogin) toLogin(res.msg);
-        else offlineStart();
-      }, function () { offlineStart(); });
+        else if (!state.booted) offlineStart();
+      }, function () { clearTimeout(slowTimer); if (!state.booted) offlineStart(); });
     }
   } else {
     toLogin('');
